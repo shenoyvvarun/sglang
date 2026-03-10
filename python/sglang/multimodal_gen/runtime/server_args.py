@@ -326,6 +326,7 @@ class ServerArgs:
 
     # Logging
     log_level: str = "info"
+    enable_metrics: bool = False
 
     @property
     def broker_port(self) -> int:
@@ -917,6 +918,12 @@ class ServerArgs:
             type=str,
             default=ServerArgs.log_level,
             help="The logging level of all loggers.",
+        )
+        parser.add_argument(
+            "--enable-metrics",
+            action=StoreBoolean,
+            default=ServerArgs.enable_metrics,
+            help="Enable Prometheus metrics on /metrics.",
         )
         parser.add_argument(
             "--backend",
